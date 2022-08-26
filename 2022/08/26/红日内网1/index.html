@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E5%9B%BE%E7%89%87/1.png">
 <meta property="article:published_time" content="2022-08-26T10:20:00.000Z">
-<meta property="article:modified_time" content="2022-08-26T11:24:37.292Z">
+<meta property="article:modified_time" content="2022-08-26T11:30:34.915Z">
 <meta property="article:author" content="一位不知名的网安小白">
 <meta property="article:tag" content="内网学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -337,15 +337,15 @@
 </ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/9.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li><p>访问后台尝试默认密码登陆</p>
+<li>访问后台尝试默认密码登陆</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/10.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>登陆成功</li>
 </ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/11.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>通过观察后台页面，发现 有一个前台模版新建模版的功能点，可以直接写 php文件。</p>
-</li>
+<ul>
+<li>通过观察后台页面，发现 有一个前台模版新建模版的功能点，可以直接写 php文件。</li>
 </ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/12.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/13.png" srcset="/img/loading.gif" lazyload></p>
@@ -364,27 +364,29 @@
 <ul>
 <li>show variables like ‘%general%’;查询全局日志变量配置</li>
 </ul>
+</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/15.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>开启general_log将所有查询语句都记录到指定可以访问的文件中</li>
 </ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/16.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li><p>日志记录的目录，是绝对路径，在php探针上已经拿到。</p>
+<li>日志记录的目录，是绝对路径，在php探针上已经拿到。</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/17.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>检查是否更改成功 </p>
+<ul>
+<li>检查是否更改成功</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/17.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>尝试写入一句话木马. 就算报错日志也会记录下来。</p>
+<ul>
+<li>尝试写入一句话木马. 就算报错日志也会记录下来。</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/18.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>尝试用哥斯拉连接  成功</p>
-</li>
+<ul>
+<li>尝试用哥斯拉连接  成功</li>
 </ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/19.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
 <h5 id="3-2、yxcms上传webshell"><a href="#3-2、yxcms上传webshell" class="headerlink" title="3.2、yxcms上传webshell"></a>3.2、yxcms上传webshell</h5><ul>
 <li>利用前台模版新建一个php页面，写上一句话木马，抓包看看是否有回显路径<ul>
 <li>并没有返回URL的路径，只能试试别的办法</li>
@@ -397,22 +399,21 @@
 <ul>
 <li><p>访问robots.txt 看是否存在可利用的目录</p>
 <ul>
-<li><p>存在&#x2F;data &#x2F;protected目录 访问了一下 发现有个目录浏览，找到刚才传的she_ll.php</p>
+<li>存在&#x2F;data &#x2F;protected目录 访问了一下 发现有个目录浏览，找到刚才传的she_ll.php</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/22.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/23.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>路径<a target="_blank" rel="noopener" href="http://192.168.17.130/yxcms//protected/apps/default/view/default/she_ll.php">http://192.168.17.130/yxcms//protected/apps/default/view/default/she_ll.php</a></p>
+<pre><code class="hljs">- 路径http://192.168.17.130/yxcms//protected/apps/default/view/default/she_ll.php
+</code></pre>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/25.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>尝试连接</p>
+<pre><code class="hljs">- 尝试连接
+</code></pre>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/26.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/27.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
                 
               </div>
