@@ -16,26 +16,26 @@
   <meta name="author" content="一位不知名的网安小白">
   <meta name="keywords" content="">
   
-    <meta name="description" content="应急响应靶场——(Win2008)WK木马一、靶场出处想要学习应急响应，然后就去找靶场，然后发现这位师傅有靶场环境，还有复现环境，故此学习一下。  https:&#x2F;&#x2F;wxiaoge.blog.csdn.net&#x2F;?type&#x3D;blog  二、靶场事件背景 服务器疑似被入侵，风扇噪声很大  服务器为Windows2008，IP为192.168.226.137    三、应急响应过程 一般情况下，CPU消耗">
+    <meta name="description" content="红日内网靶场——红队评估(一)(下)四、内网信息收集4.1、webshell信息收集并上线CS 查看用户权限(whoami)和是否存在杀软(tasklist)    不存在杀软，尝试上线CS  先选择 Packages– Windows Executable(S)   选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 payload并选">
 <meta property="og:type" content="article">
-<meta property="og:title" content="应急响应（一）">
-<meta property="og:url" content="http://example.com/2022/08/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA1/index.html">
+<meta property="og:title" content="红日靶场（一）（下）">
+<meta property="og:url" content="http://example.com/2022/08/28/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%911%E4%B8%8B/index.html">
 <meta property="og:site_name" content="undefined">
-<meta property="og:description" content="应急响应靶场——(Win2008)WK木马一、靶场出处想要学习应急响应，然后就去找靶场，然后发现这位师傅有靶场环境，还有复现环境，故此学习一下。  https:&#x2F;&#x2F;wxiaoge.blog.csdn.net&#x2F;?type&#x3D;blog  二、靶场事件背景 服务器疑似被入侵，风扇噪声很大  服务器为Windows2008，IP为192.168.226.137    三、应急响应过程 一般情况下，CPU消耗">
+<meta property="og:description" content="红日内网靶场——红队评估(一)(下)四、内网信息收集4.1、webshell信息收集并上线CS 查看用户权限(whoami)和是否存在杀软(tasklist)    不存在杀软，尝试上线CS  先选择 Packages– Windows Executable(S)   选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 payload并选">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/bizi/0.jpg">
-<meta property="article:published_time" content="2022-08-27T04:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-28T10:13:19.479Z">
+<meta property="og:image" content="http://example.com/images/bizi/1.jpg">
+<meta property="article:published_time" content="2022-08-28T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-28T15:53:56.926Z">
 <meta property="article:author" content="一位不知名的网安小白">
-<meta property="article:tag" content="应急响应">
+<meta property="article:tag" content="内网学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/bizi/0.jpg">
+<meta name="twitter:image" content="http://example.com/images/bizi/1.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>应急响应（一） - undefined</title>
+  <title>红日靶场（一）（下） - undefined</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="应急响应（一）"></span>
+            <span id="subtitle" data-typed-text="红日靶场（一）（下）"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-27 12:00" pubdate>
-          2022年8月27日 中午
+        <time datetime="2022-08-28 20:00" pubdate>
+          2022年8月28日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.8k 字
+          1.7k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          14 分钟
         
       </span>
     
@@ -274,169 +274,154 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">应急响应（一）</h1>
+            <h1 style="display: none">红日靶场（一）（下）</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="应急响应靶场——-Win2008-WK木马"><a href="#应急响应靶场——-Win2008-WK木马" class="headerlink" title="应急响应靶场——(Win2008)WK木马"></a>应急响应靶场——(Win2008)WK木马</h1><h3 id="一、靶场出处"><a href="#一、靶场出处" class="headerlink" title="一、靶场出处"></a>一、靶场出处</h3><p>想要学习应急响应，然后就去找靶场，然后发现这位师傅有靶场环境，还有复现环境，故此学习一下。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://wxiaoge.blog.csdn.net/?type=blog">https://wxiaoge.blog.csdn.net/?type=blog</a></li>
+                <h1 id="红日内网靶场——红队评估-一-下"><a href="#红日内网靶场——红队评估-一-下" class="headerlink" title="红日内网靶场——红队评估(一)(下)"></a>红日内网靶场——红队评估(一)(下)</h1><h4 id="四、内网信息收集"><a href="#四、内网信息收集" class="headerlink" title="四、内网信息收集"></a>四、内网信息收集</h4><h5 id="4-1、webshell信息收集并上线CS"><a href="#4-1、webshell信息收集并上线CS" class="headerlink" title="4.1、webshell信息收集并上线CS"></a>4.1、webshell信息收集并上线CS</h5><ul>
+<li>查看用户权限(whoami)和是否存在杀软(tasklist)</li>
 </ul>
-<h3 id="二、靶场事件背景"><a href="#二、靶场事件背景" class="headerlink" title="二、靶场事件背景"></a>二、靶场事件背景</h3><ul>
-<li><p>服务器疑似被入侵，风扇噪声很大</p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/28.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>不存在杀软，尝试上线CS</p>
+<ul>
+<li><p>先选择 Packages– Windows Executable(S)</p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/29.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>服务器为Windows2008，IP为192.168.226.137</p>
-</li>
-</ul>
-<p><img src="/../images/yjxy-1/1.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="三、应急响应过程"><a href="#三、应急响应过程" class="headerlink" title="三、应急响应过程"></a>三、应急响应过程</h3><ul>
-<li>一般情况下，CPU消耗很大的情况下风扇的噪声才会很大，应该是WK木马</li>
-</ul>
-<h4 id="3-1-排查服务器病毒程序"><a href="#3-1-排查服务器病毒程序" class="headerlink" title="3.1 排查服务器病毒程序"></a>3.1 排查服务器病毒程序</h4><h5 id="3-1-1、确认是否为WK"><a href="#3-1-1、确认是否为WK" class="headerlink" title="3.1.1、确认是否为WK"></a>3.1.1、确认是否为WK</h5><ul>
-<li>发现服务器开了个java程序，上面带有一个外链网站</li>
-</ul>
-<p><img src="/../images/yjxy-1/2.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>微步在线 去查该外链URL，发现该URL为矿池</li>
-</ul>
-<p><img src="/../images/yjxy-1/3.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>通过查看任务管理器 发现该程序占用的 内存以及cpu使用率非常大</li>
-</ul>
-<p><img src="/../images/yjxy-1/4.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>右键打开该WK程序的位置，发现目录名字为wkxx<ul>
-<li>C:\Users\Administrator\Downloads\wkbd\wkbd\javs.exe</li>
-</ul>
+<li><p>选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 payload并选择保存的位置</p>
 </li>
 </ul>
-<p><img src="/../images/yjxy-1/5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/30.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/31.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>通过查看config.json,发现Kuang池地址及其用户信息</li>
+<li>将生成的exe文件利用哥斯拉上传到服务器</li>
 </ul>
-<p><img src="/../images/yjxy-1/6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/32.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>将java.exe上传到微步云沙箱，发现被标记为恶意软件</li>
+<li>执行该程序</li>
 </ul>
-<p><img src="/../images/yjxy-1/7.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/33.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>确定是 WK程序了，在任务管理器结束掉，但是发现过一会儿该程序又运行了</li>
+<li>查看CS，成功上线</li>
 </ul>
-<p><img src="/../images/yjxy-1/8.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/yjxy-1/9.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-1-2、深度排查服务器"><a href="#3-1-2、深度排查服务器" class="headerlink" title="3.1.2、深度排查服务器"></a>3.1.2、深度排查服务器</h5><ul>
-<li>查看计划任务 taskschd.msc</li>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/34.png" srcset="/img/loading.gif" lazyload></p>
+</li>
 </ul>
-<p><img src="/../images/yjxy-1/10.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>计划任务程序里面发现一个名称为system的计划任务是正在运行的</li>
-</ul>
-<p><img src="/../images/yjxy-1/11.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>点开该计划任务，查看操作发现是启动程序任务，并且启动程序的地址是指向WK程序的</li>
-</ul>
-<p><img src="/../images/yjxy-1/12.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>继续查看发现是Administrator用户在3月13号创建的计划任务</li>
-</ul>
-<p><img src="/../images/yjxy-1/13.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>删除该计划任务并任务管理器结束该进程和删除WK程序的目录</li>
-</ul>
-<p><img src="/../images/yjxy-1/14.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="3-2、排查服务器后门"><a href="#3-2、排查服务器后门" class="headerlink" title="3.2、排查服务器后门"></a>3.2、排查服务器后门</h4><h5 id="3-2-1、查看可疑进程"><a href="#3-2-1、查看可疑进程" class="headerlink" title="3.2.1、查看可疑进程"></a>3.2.1、查看可疑进程</h5><ul>
-<li>使用利用Autoruns查看服务器是否有可疑进程<ul>
-<li>未发现可疑进程</li>
+<h4 id="五、利用CS进行信息收集"><a href="#五、利用CS进行信息收集" class="headerlink" title="五、利用CS进行信息收集"></a>五、利用CS进行信息收集</h4><h5 id="5-1-1、系统信息收集"><a href="#5-1-1、系统信息收集" class="headerlink" title="5.1.1、系统信息收集"></a>5.1.1、系统信息收集</h5><ul>
+<li>查看IP信息(ipconfig &#x2F;all)<ul>
+<li>存在域(god.org)且DC的Ip为192.52.138</li>
 </ul>
 </li>
 </ul>
-<p><img src="/../images/yjxy-1/15.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-2-2、查看是否存在可疑的启动项"><a href="#3-2-2、查看是否存在可疑的启动项" class="headerlink" title="3.2.2、查看是否存在可疑的启动项"></a>3.2.2、查看是否存在可疑的启动项</h5><ul>
-<li>用Autoruns查看是否有可疑的启动项<ul>
-<li>未发现可疑的启动项</li>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/35.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/36.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>查看工作站运行(net config Workstation)</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/37.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>显示当前域的计算机列表(net view)</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/38.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="5-1-2、主机密码收集"><a href="#5-1-2、主机密码收集" class="headerlink" title="5.1.2、主机密码收集"></a>5.1.2、主机密码收集</h5><ul>
+<li>利用CS的logonpasswords抓取密码</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/39.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>利用CS的hashdump抓一波hash</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/47.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>所有凭据如下</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/48.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="5-1-3、内网主机收集"><a href="#5-1-3、内网主机收集" class="headerlink" title="5.1.3、内网主机收集"></a>5.1.3、内网主机收集</h5><ul>
+<li><p>使用CS自带的端口扫描扫一波主机</p>
+<ul>
+<li><code>portscan 192.168.170.0-192.168.170.255 1-1025,2289,5000-600 arp 1024</code></li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/44.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>扫面出来的主机在View-Targets里面</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/46.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>结果如下</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/45.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h4 id="六、内网横向渗透"><a href="#六、内网横向渗透" class="headerlink" title="六、内网横向渗透"></a>六、内网横向渗透</h4><h5 id="6-1-1、主机提权"><a href="#6-1-1、主机提权" class="headerlink" title="6.1.1、主机提权"></a>6.1.1、主机提权</h5><ul>
+<li>whoami &#x2F;all 发现是administrator权限</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/40.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>利用计划任务权限维持尝试反弹system权限</p>
+<ul>
+<li><code>schtasks /create /ru system /tn &quot;Microsoft\Windows\Multimedia\SystemMediaService&quot; /sc MINUTE /mo 50  /tr &quot;C:\Windows\system.exe&quot; /st 16:22 /f</code> (创建一个名为Microsoft\Windows\Multimedia\SystemMediaService, 16:22开始执行，每50分钟执行一次)</li>
+<li><code>SCHTASKS /Run /TN &quot;Microsoft\Windows\Multimedia\SystemMediaService&quot; /f </code>(启动计划任务)</li>
+<li>成功反弹system权限</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/41.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/42.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>删除计划任务<ul>
+<li><code>schtasks /delete /tn &quot;Microsoft\Windows\Multimedia\SystemSoundsService&quot; /f</code>(删除计划任务)</li>
 </ul>
 </li>
 </ul>
-<p><img src="/../images/yjxy-1/16.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-2-3、查看计划任务"><a href="#3-2-3、查看计划任务" class="headerlink" title="3.2.3、查看计划任务"></a>3.2.3、查看计划任务</h5><ul>
-<li>查看计划任务，之前WK计划任务已经被删除，所以现在无异常的计划任务</li>
-</ul>
-<p><img src="/../images/yjxy-1/17.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-2-4、查看服务"><a href="#3-2-4、查看服务" class="headerlink" title="3.2.4、查看服务"></a>3.2.4、查看服务</h5><ul>
-<li>未发现可疑的服务</li>
-</ul>
-<p><img src="/../images/yjxy-1/18.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-2-5、查看镜像劫持"><a href="#3-2-5、查看镜像劫持" class="headerlink" title="3.2.5、查看镜像劫持"></a>3.2.5、查看镜像劫持</h5><ul>
-<li>发现shift粘贴键后门，后门路径C:\windows\system32\cmd.exe 可以在不登录服务器的情况下，以Administrator权限 执行cmd</li>
-</ul>
-<p><img src="/../images/yjxy-1/19.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="3-2-6、查看是否有隐藏用户"><a href="#3-2-6、查看是否有隐藏用户" class="headerlink" title="3.2.6、查看是否有隐藏用户"></a>3.2.6、查看是否有隐藏用户</h5><ul>
-<li>通过 控制面板\所有控制面板项\用户帐户\管理帐户 里面只有administrator和guest用户</li>
-</ul>
-<p><img src="/../images/yjxy-1/20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/43.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="6-1-2、不出网主机上线"><a href="#6-1-2、不出网主机上线" class="headerlink" title="6.1.2、不出网主机上线"></a>6.1.2、不出网主机上线</h5><ul>
+<li><p>不出网机器上线一般有三种方式上线</p>
 <ul>
-<li>通过注册表查看 HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\Names 发现wxiaoge$</li>
-</ul>
-<p><img src="/../images/yjxy-1/21.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="3-3、排查网络连接"><a href="#3-3、排查网络连接" class="headerlink" title="3.3、排查网络连接"></a>3.3、排查网络连接</h4><ul>
-<li>使用netstat -ano 查看网络连接，未发现可疑连接</li>
-</ul>
-<p><img src="/../images/yjxy-1/22.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="四、应急响应溯源"><a href="#四、应急响应溯源" class="headerlink" title="四、应急响应溯源"></a>四、应急响应溯源</h4><h5 id="4-1-1、查看WK木马的计划任务创建时间"><a href="#4-1-1、查看WK木马的计划任务创建时间" class="headerlink" title="4.1.1、查看WK木马的计划任务创建时间"></a>4.1.1、查看WK木马的计划任务创建时间</h5><ul>
-<li>WK木马的创建者是Administrator,创建时间是2022-03-23 9:46:17</li>
-</ul>
-<p><img src="/../images/yjxy-1/13.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="4-2-1-排查安全日志"><a href="#4-2-1-排查安全日志" class="headerlink" title="4.2.1 排查安全日志"></a>4.2.1 排查安全日志</h5><ul>
-<li>分析安全日志 ，发现21号有大量的爆破</li>
-</ul>
-<p><img src="/../images/yjxy-1/25.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>但是均未发现ip地址</li>
-</ul>
-<p><img src="/../images/yjxy-1/26.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/yjxy-1/27.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>接着查找，发现2022&#x2F;3&#x2F;21 16:27:12，IP：192.168.226.1成功登录该服务器</li>
-</ul>
-<p><img src="/../images/yjxy-1/28.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>继续排查，发现在 2022&#x2F;3&#x2F;21 16:28:12 黑客使用administrator账户创建了隐藏账户 wxiaoge$</li>
-</ul>
-<p><img src="/../images/yjxy-1/29.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>继续排查系统日志，发现在 2022&#x2F;3&#x2F;23 9:36:02 服务器去解析 xmr.usa-138.com 域名，这个域名是公共矿池，说明此时已经植入挖矿程序并且运行</li>
-</ul>
-<p><img src="/../images/yjxy-1/30.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h4><h5 id="5-1-1、寻找WK小结"><a href="#5-1-1、寻找WK小结" class="headerlink" title="5.1.1、寻找WK小结"></a>5.1.1、寻找WK小结</h5><ul>
-<li>1、WaKuang病毒位置：C:\Users\Administrator\Downloads\wkbd\wkbd\ 目录<ul>
-<li>删除C:\Users\Administrator\Downloads\wkbd\wkbd\ 目录</li>
+<li>使用smb beacon</li>
+<li>配置listener通过HTTP代理上线</li>
+<li>使用pystinger搭建 socks4代理</li>
 </ul>
 </li>
-<li>2、存在挖矿程序的计划任务，任务名字system<ul>
-<li>删除挖矿程序的计划任务。</li>
-</ul>
-</li>
-</ul>
-<h5 id="5-1-2-排查小结"><a href="#5-1-2-排查小结" class="headerlink" title="5.1.2 排查小结"></a>5.1.2 排查小结</h5><ul>
-<li><p>1、存在Windows隐藏用户</p>
+<li><p>学习使用SMB beacon</p>
 <ul>
-<li>通过注册表找到并删除</li>
+<li><code>	SMB Beacon使用命名管道通过父级Beacon进行通讯，当两个Beacons链接后，子Beacon从父Beacon获取到任务并发送。因为链接的Beacons使用Windows命名管道进行通信，此流量封装在SMB协议中，所以SMBbeacon相对隐蔽。SMB beacon不能直接生成可用载荷, 只能使用 PsExec 或 Stageless Payload 上线</code></li>
+<li><code>首先得到内网中一台主机的beacon，抓取密码后进行smb喷射，得到另一台开放445端口的机器上的administrator账户密码，在目标机器不出网的情况下，可以使用Smb</code></li>
 </ul>
 </li>
-<li><p>2、存在shift粘贴键后门</p>
+<li><p>使用条件</p>
 <ul>
-<li>删除sethc.exe</li>
+<li>具有 SMB Beacon 的主机必须接受 445 端口上的连接</li>
+<li>只能链接由同一个 Cobalt Strike 实例管理的 Beacon。</li>
+<li>利用这种beacon横移必须有目标主机的管理员权限或者说是拥有具有管理员权限的凭据。</li>
 </ul>
 </li>
+<li><p>使用方法</p>
+<ul>
+<li>1、建立smb listener</li>
 </ul>
-<h5 id="5-1-3溯源小结"><a href="#5-1-3溯源小结" class="headerlink" title="5.1.3溯源小结"></a>5.1.3溯源小结</h5><ul>
-<li>根据日志推测：<ul>
-<li>黑客在2022&#x2F;3&#x2F;21 16:27:12对服务器爆破administrarot成功，用ip为192.168.226.1登录成功</li>
-<li>在2022&#x2F;3&#x2F;21 16:28:12使用administrator服务器创建了隐藏用户wxiaoge</li>
-<li>在2022&#x2F;3&#x2F;23 9:36:02 植入挖矿程序并且运行</li>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/49.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在cs中使用psexec进行横向移动，选择现有的beacon作为跳板，凭据必须是administrator，拥有目标主机管理员权限</li>
 </ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/50.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>连接成功，可以看到smb beacon上线的主机右侧有∞∞标识，如果出网主机掉线了，那么这太不出网的也会断</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/51.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>尝试利用同样方法拿下域控</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/52.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>域控已上线</li>
+</ul>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/53.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/54.png" srcset="/img/loading.gif" lazyload></p>
 </li>
+</ul>
+<h4 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h4><ul>
+<li>此次由于刚接触内网 所以只用了SMB横向，等在学习学习尝试用永恒之蓝横向</li>
+<li>新手上路，多多指教</li>
 </ul>
 
                 
@@ -456,7 +441,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BA%94%E6%80%A5/" class="category-chain-item">应急</a>
+  <a href="/categories/%E5%86%85%E7%BD%91/" class="category-chain-item">内网</a>
   
   
 
@@ -471,7 +456,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">#应急响应</a>
+        <a href="/tags/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/">#内网学习</a>
       
     </div>
   
@@ -483,8 +468,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>应急响应（一）</div>
-      <div>http://example.com/2022/08/27/应急响应靶场1/</div>
+      <div>红日靶场（一）（下）</div>
+      <div>http://example.com/2022/08/28/红日内网1下/</div>
     </div>
     <div class="license-meta">
       
@@ -496,7 +481,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月27日</div>
+          <div>2022年8月28日</div>
         </div>
       
       
@@ -526,18 +511,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/28/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%911%E4%B8%8B/" title="红日靶场（一）（下）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">红日靶场（一）（下）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/26/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%911/" title="红日靶场（一）（上）">
-                        <span class="hidden-mobile">红日靶场（一）（上）</span>
+                      <a href="/2022/08/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA1/" title="应急响应（一）">
+                        <span class="hidden-mobile">应急响应（一）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
