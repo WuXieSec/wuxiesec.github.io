@@ -16,26 +16,26 @@
   <meta name="author" content="一位不知名的网安小白">
   <meta name="keywords" content="">
   
-    <meta name="description" content="红日内网靶场——红队评估(一)(下)四、内网信息收集4.1、webshell信息收集并上线CS 查看用户权限(whoami)和是否存在杀软(tasklist)    不存在杀软，尝试上线CS  先选择 Packages– Windows Executable(S)       选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 paylo">
+    <meta name="description" content="类型转换   函数 说明    int(x) 将x转换为一个整数   float(x) 将x转换为一个浮点数   str(x) 将x转换为一个字符串   bool(x) 将x转换为一个布尔值   转换为整数 注意 123.456和12ab字符串都包含非法字符，不能转换成整数，会报错。    1234567# str --&gt; inta &#x3D; &amp;#x27;123&amp;#x27;print(int(&amp;q">
 <meta property="og:type" content="article">
-<meta property="og:title" content="红日靶场（一）（下）">
-<meta property="og:url" content="http://example.com/2022/08/28/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%911%E4%B8%8B/index.html">
+<meta property="og:title" content="Python爬虫-类型转换">
+<meta property="og:url" content="http://example.com/2022/08/29/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="undefined">
-<meta property="og:description" content="红日内网靶场——红队评估(一)(下)四、内网信息收集4.1、webshell信息收集并上线CS 查看用户权限(whoami)和是否存在杀软(tasklist)    不存在杀软，尝试上线CS  先选择 Packages– Windows Executable(S)       选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 paylo">
+<meta property="og:description" content="类型转换   函数 说明    int(x) 将x转换为一个整数   float(x) 将x转换为一个浮点数   str(x) 将x转换为一个字符串   bool(x) 将x转换为一个布尔值   转换为整数 注意 123.456和12ab字符串都包含非法字符，不能转换成整数，会报错。    1234567# str --&gt; inta &#x3D; &amp;#x27;123&amp;#x27;print(int(&amp;q">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/bizi/1.jpg">
-<meta property="article:published_time" content="2022-08-28T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-28T15:56:52.576Z">
+<meta property="og:image" content="http://example.com/images/bizi/2.jpg">
+<meta property="article:published_time" content="2022-08-29T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-08T09:45:51.194Z">
 <meta property="article:author" content="一位不知名的网安小白">
-<meta property="article:tag" content="内网学习">
+<meta property="article:tag" content="Python爬虫">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/bizi/1.jpg">
+<meta name="twitter:image" content="http://example.com/images/bizi/2.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>红日靶场（一）（下） - undefined</title>
+  <title>Python爬虫-类型转换 - undefined</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="红日靶场（一）（下）"></span>
+            <span id="subtitle" data-typed-text="Python爬虫-类型转换"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-28 20:00" pubdate>
-          2022年8月28日 晚上
+        <time datetime="2022-08-29 12:00" pubdate>
+          2022年8月29日 中午
         </time>
       </span>
     
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.7k 字
+          1.1k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          14 分钟
+          10 分钟
         
       </span>
     
@@ -274,155 +274,59 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">红日靶场（一）（下）</h1>
+            <h1 style="display: none">Python爬虫-类型转换</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="红日内网靶场——红队评估-一-下"><a href="#红日内网靶场——红队评估-一-下" class="headerlink" title="红日内网靶场——红队评估(一)(下)"></a>红日内网靶场——红队评估(一)(下)</h1><h4 id="四、内网信息收集"><a href="#四、内网信息收集" class="headerlink" title="四、内网信息收集"></a>四、内网信息收集</h4><h5 id="4-1、webshell信息收集并上线CS"><a href="#4-1、webshell信息收集并上线CS" class="headerlink" title="4.1、webshell信息收集并上线CS"></a>4.1、webshell信息收集并上线CS</h5><ul>
-<li>查看用户权限(whoami)和是否存在杀软(tasklist)</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/28.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li><p>不存在杀软，尝试上线CS</p>
-<ul>
-<li>先选择 Packages– Windows Executable(S)</li>
-</ul>
-</li>
-</ul>
-<p> <img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/29.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>选择自己建的Listener，Output选择PWindows ExE,如果是64位的系统就钩上Use X64 payload并选择保存的位置</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/30.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/31.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>将生成的exe文件利用哥斯拉上传到服务器</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/32.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>执行该程序</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/33.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>查看CS，成功上线</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/34.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="五、利用CS进行信息收集"><a href="#五、利用CS进行信息收集" class="headerlink" title="五、利用CS进行信息收集"></a>五、利用CS进行信息收集</h4><h5 id="5-1-1、系统信息收集"><a href="#5-1-1、系统信息收集" class="headerlink" title="5.1.1、系统信息收集"></a>5.1.1、系统信息收集</h5><ul>
-<li>查看IP信息(ipconfig &#x2F;all)<ul>
-<li>存在域(god.org)且DC的Ip为192.52.138</li>
+                <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><table>
+<thead>
+<tr>
+<th><strong>函数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int(x)</td>
+<td>将x转换为一个整数</td>
+</tr>
+<tr>
+<td>float(x)</td>
+<td>将x转换为一个浮点数</td>
+</tr>
+<tr>
+<td>str(x)</td>
+<td>将x转换为一个字符串</td>
+</tr>
+<tr>
+<td>bool(x)</td>
+<td>将x转换为一个布尔值</td>
+</tr>
+</tbody></table>
+<h3 id="转换为整数"><a href="#转换为整数" class="headerlink" title="转换为整数"></a>转换为整数</h3><ul>
+<li>注意<ul>
+<li>123.456和12ab字符串都包含非法字符，不能转换成整数，会报错。</li>
 </ul>
 </li>
 </ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/35.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/36.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>查看工作站运行(net config Workstation)</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/37.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>显示当前域的计算机列表(net view)</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/38.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="5-1-2、主机密码收集"><a href="#5-1-2、主机密码收集" class="headerlink" title="5.1.2、主机密码收集"></a>5.1.2、主机密码收集</h5><ul>
-<li>利用CS的logonpasswords抓取密码</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/39.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>利用CS的hashdump抓一波hash</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/47.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>所有凭据如下</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/48.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="5-1-3、内网主机收集"><a href="#5-1-3、内网主机收集" class="headerlink" title="5.1.3、内网主机收集"></a>5.1.3、内网主机收集</h5><ul>
-<li><p>使用CS自带的端口扫描扫一波主机</p>
-<ul>
-<li><code>portscan 192.168.170.0-192.168.170.255 1-1025,2289,5000-600 arp 1024</code></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># str --&gt; int</span><br>a = <span class="hljs-string">&#x27;123&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-string">&quot;123&quot;</span>)) <span class="hljs-comment"># 123 将字符串转换成为整数</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-number">123.78</span>)) <span class="hljs-comment"># 123 将浮点数转换成为整数</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-literal">True</span>)) <span class="hljs-comment"># 1 布尔值True转换成为整数是1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-literal">False</span>)) <span class="hljs-comment"># 0 布尔值False转换成为整数是0</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="转换浮点数"><a href="#转换浮点数" class="headerlink" title="转换浮点数"></a>转换浮点数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">f1 = <span class="hljs-built_in">float</span>(<span class="hljs-string">&quot;12.34&quot;</span>)<br><span class="hljs-built_in">print</span>(f1) <span class="hljs-comment"># 12.34</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(f1)) <span class="hljs-comment"># float 将字符串的“12.34”转换成浮点数12.34</span><br><br>f2 = <span class="hljs-built_in">float</span>(<span class="hljs-number">23</span>)<br><span class="hljs-built_in">print</span>(f2) <span class="hljs-comment"># 23.0</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(f2)) <span class="hljs-comment"># float 将整数转换成为了浮点数</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="转换字符串"><a href="#转换字符串" class="headerlink" title="转换字符串"></a>转换字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-built_in">str</span>(<span class="hljs-number">45</span>)<br>str2 = <span class="hljs-built_in">str</span>(<span class="hljs-number">34.56</span>)<br>str3 = <span class="hljs-built_in">str</span>(<span class="hljs-literal">True</span>) <span class="hljs-comment"># True（str）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(str1),<span class="hljs-built_in">type</span>(str2),<span class="hljs-built_in">type</span>(str3))<br><br><span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt; &lt;class &#x27;str&#x27;&gt; &lt;class &#x27;str&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="转换成布尔值"><a href="#转换成布尔值" class="headerlink" title="转换成布尔值"></a>转换成布尔值</h3><ul>
+<li>注意<ul>
+<li>如果对非0的整数进行bool类型的转换 那么就全部是True；在整数范围内 0强制转换为bool类型的结果是False；</li>
+<li>将浮点数转换为bool类型的数据时候 正的浮点数和负的浮点数的结果都是True；  如果是0.0 则是False；</li>
+<li>只要字符串有内容，那么强制类型转换为bool的时候，那么就返回True；空格也是True 留空是False；</li>
+<li>只要列表中有数据，那么强制转换为bool的时候，就返回True；无数据 则返回False；</li>
+<li>只要元组中有数据，那么强制转换为bool的时候，就返回Ture；无数据 则返回False；</li>
+<li>只要字典中有内容，那么强制转换为bool的时候，就返回True；无数据 则返回False；</li>
 </ul>
 </li>
 </ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/44.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>扫面出来的主机在View-Targets里面</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/46.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>结果如下</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/45.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="六、内网横向渗透"><a href="#六、内网横向渗透" class="headerlink" title="六、内网横向渗透"></a>六、内网横向渗透</h4><h5 id="6-1-1、主机提权"><a href="#6-1-1、主机提权" class="headerlink" title="6.1.1、主机提权"></a>6.1.1、主机提权</h5><ul>
-<li>whoami &#x2F;all 发现是administrator权限</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/40.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li><p>利用计划任务权限维持尝试反弹system权限</p>
-<ul>
-<li><code>schtasks /create /ru system /tn &quot;Microsoft\Windows\Multimedia\SystemMediaService&quot; /sc MINUTE /mo 50  /tr &quot;C:\Windows\system.exe&quot; /st 16:22 /f</code> (创建一个名为Microsoft\Windows\Multimedia\SystemMediaService, 16:22开始执行，每50分钟执行一次)</li>
-<li><code>SCHTASKS /Run /TN &quot;Microsoft\Windows\Multimedia\SystemMediaService&quot; /f </code>(启动计划任务)</li>
-<li>成功反弹system权限</li>
-</ul>
-</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/41.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/42.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>删除计划任务<ul>
-<li><code>schtasks /delete /tn &quot;Microsoft\Windows\Multimedia\SystemSoundsService&quot; /f</code>(删除计划任务)</li>
-</ul>
-</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/43.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="6-1-2、不出网主机上线"><a href="#6-1-2、不出网主机上线" class="headerlink" title="6.1.2、不出网主机上线"></a>6.1.2、不出网主机上线</h5><ul>
-<li><p>不出网机器上线一般有三种方式上线</p>
-<ul>
-<li>使用smb beacon</li>
-<li>配置listener通过HTTP代理上线</li>
-<li>使用pystinger搭建 socks4代理</li>
-</ul>
-</li>
-<li><p>学习使用SMB beacon</p>
-<ul>
-<li><code>	SMB Beacon使用命名管道通过父级Beacon进行通讯，当两个Beacons链接后，子Beacon从父Beacon获取到任务并发送。因为链接的Beacons使用Windows命名管道进行通信，此流量封装在SMB协议中，所以SMBbeacon相对隐蔽。SMB beacon不能直接生成可用载荷, 只能使用 PsExec 或 Stageless Payload 上线</code></li>
-<li><code>首先得到内网中一台主机的beacon，抓取密码后进行smb喷射，得到另一台开放445端口的机器上的administrator账户密码，在目标机器不出网的情况下，可以使用Smb</code></li>
-</ul>
-</li>
-<li><p>使用条件</p>
-<ul>
-<li>具有 SMB Beacon 的主机必须接受 445 端口上的连接</li>
-<li>只能链接由同一个 Cobalt Strike 实例管理的 Beacon。</li>
-<li>利用这种beacon横移必须有目标主机的管理员权限或者说是拥有具有管理员权限的凭据。</li>
-</ul>
-</li>
-<li><p>使用方法</p>
-<ul>
-<li>1、建立smb listener</li>
-</ul>
-</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/49.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>在cs中使用psexec进行横向移动，选择现有的beacon作为跳板，凭据必须是administrator，拥有目标主机管理员权限</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/50.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>连接成功，可以看到smb beacon上线的主机右侧有∞∞标识，如果出网主机掉线了，那么这太不出网的也会断</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/51.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>尝试利用同样方法拿下域控</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/52.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>域控已上线</li>
-</ul>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/53.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/../images/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%91%201/54.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h4><ul>
-<li>此次由于刚接触内网 所以只用了SMB横向，等在学习学习尝试用永恒之蓝横向</li>
-<li>新手上路，多多指教</li>
-</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 什么情况下为False</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(<span class="hljs-string">&#x27;&#x27;</span>)) <span class="hljs-comment"># False</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(<span class="hljs-string">&quot;&quot;</span>)) <span class="hljs-comment"># False</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(<span class="hljs-number">0</span>)) <span class="hljs-comment"># False</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(&#123;&#125;)) <span class="hljs-comment"># False 字典为空</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>([])) <span class="hljs-comment"># False 列表为空</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bool</span>(())) <span class="hljs-comment"># False 元组为空</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -441,7 +345,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%86%85%E7%BD%91/" class="category-chain-item">内网</a>
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
   
   
 
@@ -456,7 +360,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/">#内网学习</a>
+        <a href="/tags/Python%E7%88%AC%E8%99%AB/">#Python爬虫</a>
       
     </div>
   
@@ -468,8 +372,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>红日靶场（一）（下）</div>
-      <div>http://example.com/2022/08/28/红日内网1下/</div>
+      <div>Python爬虫-类型转换</div>
+      <div>http://example.com/2022/08/29/类型转换/</div>
     </div>
     <div class="license-meta">
       
@@ -481,7 +385,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月28日</div>
+          <div>2022年8月29日</div>
         </div>
       
       
@@ -511,18 +415,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/29/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="Python爬虫-类型转换">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python爬虫-类型转换</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E9%9D%B6%E5%9C%BA1/" title="应急响应（一）">
-                        <span class="hidden-mobile">应急响应（一）</span>
+                      <a href="/2022/08/28/%E7%BA%A2%E6%97%A5%E5%86%85%E7%BD%911%E4%B8%8B/" title="红日靶场（一）（下）">
+                        <span class="hidden-mobile">红日靶场（一）（下）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
