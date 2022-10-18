@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.ico">
+  <link rel="icon" href="/images/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="一位不知名的网安小白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内网渗透测试基础知识(一)内网渗透是什么 内网渗透（Intranet Exploitation）1内网渗透是指获取目标服务器控制权之后，通过内网信息收集、内网代理、权限提升、横向移动等技术，对其所处的内网环境进行渗透，并最终获取内网其他主机权限的过程，如域控制器，运维主机等  内网工作环境工作组121、工作组（Work Group）是局域网中的一个概念。2、它是最常见最简单最普通的资源管理模式，就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透基础知识(一)">
+<meta property="og:url" content="http://example.com/2022/10/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="undefined">
+<meta property="og:description" content="内网渗透测试基础知识(一)内网渗透是什么 内网渗透（Intranet Exploitation）1内网渗透是指获取目标服务器控制权之后，通过内网信息收集、内网代理、权限提升、横向移动等技术，对其所处的内网环境进行渗透，并最终获取内网其他主机权限的过程，如域控制器，运维主机等  内网工作环境工作组121、工作组（Work Group）是局域网中的一个概念。2、它是最常见最简单最普通的资源管理模式，就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/bizi/3.jpeg">
+<meta property="article:published_time" content="2022-10-18T09:45:00.000Z">
+<meta property="article:modified_time" content="2022-10-18T09:38:55.231Z">
+<meta property="article:author" content="一位不知名的网安小白">
+<meta property="article:tag" content="内网学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/bizi/3.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>内网渗透基础知识(一) - undefined</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>404</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/0.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内网渗透基础知识(一)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-18 17:45" pubdate>
+          2022年10月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">内网渗透基础知识(一)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="内网渗透测试基础知识-一"><a href="#内网渗透测试基础知识-一" class="headerlink" title="内网渗透测试基础知识(一)"></a>内网渗透测试基础知识(一)</h1><h3 id="内网渗透是什么"><a href="#内网渗透是什么" class="headerlink" title="内网渗透是什么"></a>内网渗透是什么</h3><ul>
+<li>内网渗透（Intranet Exploitation）<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">内网渗透是指获取目标服务器控制权之后，通过内网信息收集、内网代理、权限提升、横向移动等技术，对其所处的内网环境进行渗透，并最终获取内网其他主机权限的过程，如域控制器，运维主机等<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="内网工作环境"><a href="#内网工作环境" class="headerlink" title="内网工作环境"></a>内网工作环境</h3><h4 id="工作组"><a href="#工作组" class="headerlink" title="工作组"></a>工作组</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">1、工作组（Work Group）是局域网中的一个概念。<br>2、它是最常见最简单最普通的资源管理模式，就是将不同的电脑按功能分别列入不同的组中，以方便管理。<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/1.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>通过此电脑属性-更改设置-计算机名更改-工作组<br><img src="/../images/Intranet_Book/2.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/Intranet_Book/3.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/Intranet_Book/4.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="域（Domain）"><a href="#域（Domain）" class="headerlink" title="域（Domain）"></a>域（Domain）</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">域（domain）是一个比工作组更高级的计算机资源管理模式，既可以用于计算机数量较少的小规模网络环境，也可以用于计算机数量众多的大型网络环境。<br>域（domain）是一个有安全边界的计算机集合，在同一个域中的计算机彼此之间已经建立了信任关系，在域内访问其他机器，不再需要被访问机器的许可<br></code></pre></td></tr></table></figure>
+<h5 id="单域"><a href="#单域" class="headerlink" title="单域"></a>单域</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">单域是指网络环境中只有一个域。在一个计算机数量较少，地理位置固定的小规模组织中，建立一个单独的域。<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/5.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="父域和子域"><a href="#父域和子域" class="headerlink" title="父域和子域"></a>父域和子域</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">在某些情况下，为了满足某些特殊情况或者要求，需要在一个域中划分出多个域，被划分的域称为父域，划分出来的各部分域称为子域<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/6.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="域树"><a href="#域树" class="headerlink" title="域树"></a>域树</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">域树是多个域通过建立信任关系组成一个域集合。在域树中，所有的域共享同一表结构和配置，所有的域名形成一个连续的名字空间；域树中域的命名空间具有连续性，并且域名层次越深，级别越低。<br><br>在域树中，域管理员只能管理本域，不能访问或者管理其他域。如果两个域之间需要互相访问，就需要建立信任关系(Trust Relation)<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/7.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="域林"><a href="#域林" class="headerlink" title="域林"></a>域林</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">域林是指有一个或多个没有形成连续名字空间的域树组成域树集合<br></code></pre></td></tr></table></figure>
+<ul>
+<li>域林与域树的区别<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">域林中的域或域树之间没有形成连续的名字空间，而域树是由一些具有连续名字空间的域组成。<br>但是域林中的所有域树仍共享同一个表结构、配置和全局目录。<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/8.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h5 id="域控制器"><a href="#域控制器" class="headerlink" title="域控制器"></a>域控制器</h5><ul>
+<li>什么是域控制器<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">域控制器(Domain Controller, DC，域控)是域环境核心的服务器计算机，用于在域中响应安全身份认证请求，负责允许或着拒绝发出请求的主机访问域内资源，以及对用户进行身份验证，存储用户账户信息并执行域的安全策略等。<br><br>一个域环境可以拥有一台或者多台域控制器，每台域控制器各自存储一份所在域的活动目录的可写副本，对活动墓库的任何修改都可以从源域控制器同步复制到域，域树或者域林的其他控制器上。即使一台瘫痪，另外一台域控制器可以继续工作，以保证环境的正常运行<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="活动目录"><a href="#活动目录" class="headerlink" title="活动目录"></a>活动目录</h3><h4 id="活动目录的含义"><a href="#活动目录的含义" class="headerlink" title="活动目录的含义"></a>活动目录的含义</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">活动目录(Active Directory)是指安装在域控制器上，为整个域环境提供集中式目录管理服务的组件。<br></code></pre></td></tr></table></figure>
+<h4 id="活动目录的主要功能"><a href="#活动目录的主要功能" class="headerlink" title="活动目录的主要功能"></a>活动目录的主要功能</h4><ul>
+<li>计算机集中管理<ul>
+<li>集中管理所有加入域的服务器及客户端计算机，统一下发组策略</li>
+</ul>
+</li>
+<li>用户集中管理：<ul>
+<li>集中管理域用户，组织通讯录、用户组，对用户进行统一的身份认证，资源授权等。</li>
+</ul>
+</li>
+<li>资源集中管理：<ul>
+<li>集中管理域中的打印机，文件共享服务等网络资源</li>
+</ul>
+</li>
+<li>环境集中配置：<ul>
+<li>集中的配置域中计算机的工作环境，如统一计算机桌面，统一网络连接配置，统一计算机安全配置等</li>
+</ul>
+</li>
+<li>应用集中管理：<ul>
+<li>对域中的计算机统一推送软件，安全补丁，防病毒系统，安装网络打印机等</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ntds-dit文件"><a href="#Ntds-dit文件" class="headerlink" title="Ntds.dit文件"></a>Ntds.dit文件</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">Ntds.dit 文件是域环境的域控制器上保存的一个二进制文件，是主要的活动目录数据库，其文件的路径为“%SystemRoot%\ntds\ntds.dit&quot;.<br><br>非域环境即工作组环境中，用户的登录凭据等信息存储在本地SAM文件中。<br></code></pre></td></tr></table></figure>
+
+<h4 id="活动目录的访问"><a href="#活动目录的访问" class="headerlink" title="活动目录的访问"></a>活动目录的访问</h4><ul>
+<li>使用微软官方提供的AD Explorer工具连接域控制器访问活动目录<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">可以方便浏览活动目录数据库、自定义快速入口、查看对象属性、编辑权限、进行精确搜寻等。<br><br>在域中任意一台主机上，以域用户身份进行连接域控制器，连接成功后可以查看域中的各种信息<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/9.png" srcset="/img/loading.gif" lazyload><br><img src="/../images/Intranet_Book/10.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="活动目录的分区"><a href="#活动目录的分区" class="headerlink" title="活动目录的分区"></a>活动目录的分区</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">活动目录可以支持数以千万的对象。为了扩大这些对象，微软将活动目录数据库划分为多个分区，以方便进行复制和管理，每个逻辑分区在域林中的域控制器之间分别复制更改。这些分区被称为上下文命名（Naming Context NC)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>活动目录预定以了域分区、配置分区和架构分区三个分区</li>
+</ul>
+<h5 id="域分区"><a href="#域分区" class="headerlink" title="域分区"></a>域分区</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">域分区（Domain NC）用于存储与该域有关的对象信息，这些信息是特定于该域的。如：域中计算机，用户，组，组织单位等信息。<br>在域林中，每个域的域控制器各自拥有一份属于自己的域分区，只会被复制到本域的所有域控制器中。<br></code></pre></td></tr></table></figure>
+<ul>
+<li>所圈出来的”DC&#x3D;test,DC&#x3D;com”就是test.com域的分区<br><img src="/../images/Intranet_Book/11.png" srcset="/img/loading.gif" lazyload></li>
+<li>域分区主要包括以下：<ul>
+<li>CN&#x3D;Builtin：内置了本地域组的安全组的容器。</li>
+<li>CN&#x3D;Computers：机器用户容器，其中包含所有加入域的主机。</li>
+<li>OU&#x3D;Domain Controllers：域控制器的容器，其中包含域中所有的域控制器</li>
+<li>CN&#x3D;ForeignSecurityPrincipals：包含域中所有来自域的林外部域的组中成员</li>
+<li>CN&#x3D;Managed Service Accounts：托管服务账户的容器</li>
+<li>CN&#x3D;System：各种预配置对象的容器，包含信任对象、DNS对象和组策略对象。</li>
+<li>CN&#x3D;Users：用户和组对象的默认容器。<br><img src="/../images/Intranet_Book/12.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h5 id="配置分区"><a href="#配置分区" class="headerlink" title="配置分区"></a>配置分区</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">配置分区（Configuration NC）存储整个域林的主要配置信息，包括有关站点、服务、分区和整个活动目录结构的信息。<br>整个域林共享一份想听的配置分区，会被复制到域林中所有的域控制器上。<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/14.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="架构分区"><a href="#架构分区" class="headerlink" title="架构分区"></a>架构分区</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">架构分区（Schema NC）存储整个域林的架构信息，包括活动目录中的所有类，对象和属性的定义数据。<br>整个域林共享一份相同的架构分区，会被复制到林中所有域的域控制器中。<br></code></pre></td></tr></table></figure>
+<ul>
+<li>“CN&#x3D;Schema,Cn&#x3D;Configuration,DC&#x3D;test,DC&#x3D;com”就是架构分区<br><img src="/../images/Intranet_Book/15.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="活动目录的查询"><a href="#活动目录的查询" class="headerlink" title="活动目录的查询"></a>活动目录的查询</h4><h5 id="使用Adfind查询活动目录"><a href="#使用Adfind查询活动目录" class="headerlink" title="使用Adfind查询活动目录"></a>使用Adfind查询活动目录</h5><ul>
+<li>Adfind是一款C++语言编写的域中信息查询工具，可以在域中任何一台主机上使用。语法格式为<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe [switches] [-b basedn] [-f filter] [attr list]<br><span class="hljs-meta prompt_"># </span><span class="language-bash">-b 是指定一个BaseDN作为查询的根，-f为LDAP过滤条件，attr list 为需要显示的属性</span><br></code></pre></td></tr></table></figure></li>
+<li>实列：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">执行下面命令：</span><br>Adfind.exe -b dc=test,dc=com -f &quot;objectClass=computer&quot; name operatingSystem<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查询test.com域中的所有computer对象，并过滤对象的<span class="hljs-string">&quot;name&quot;</span>和“operatingSystem”属性</span><br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/16.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe -b dc=test,dc=com -f &quot;objectClass=user&quot; cn<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查询test.com域中的所有user对象，并过滤对象的“cn”属性</span><br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/17.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Adfind.exe 常用命令<table>
+<thead>
+<tr>
+<th>查询需求</th>
+<th>AdFind命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询test.com域的所有computer对象并显示所有属性</td>
+<td>Adfind.exe -b dc&#x3D;test,dc&#x3D;com -f “objectClass&#x3D;computer”</td>
+</tr>
+<tr>
+<td>查询test.com域的所有computer对象并过滤对象的name和operatinfSystem的属性</td>
+<td>Adfind.exe -b dc&#x3D;test.com,dc&#x3D;com -f “objectClass&#x3D;computer” name operatingSystem</td>
+</tr>
+<tr>
+<td>查询指定主机的相关信息</td>
+<td>Adfind.exe -sc c:&lt;Name&#x2F;SamAccountName&gt; 例子：Adfind.exe -sc c:172_16_0_15</td>
+</tr>
+<tr>
+<td>查询当前域中主机的数量</td>
+<td>Adfind.exe -sc adobjcnt:computer</td>
+</tr>
+<tr>
+<td>查询当前域中被禁用的主机</td>
+<td>Adfind.exe -sc computers_disabled</td>
+</tr>
+<tr>
+<td>查询当前域中不需要密码的主机</td>
+<td>Adfind.exe -sc computers_pwdnotreqd</td>
+</tr>
+<tr>
+<td>查询域中在线的计算机</td>
+<td>Adfind.exe -sc computers_active</td>
+</tr>
+<tr>
+<td>查询test.com域的所以user对象并过滤对象的cn属性</td>
+<td>Adfind.exe -b dc&#x3D;test,dc&#x3D;com -f “objectClass&#x3D;user” cn</td>
+</tr>
+<tr>
+<td>查询当前登录的用户信息和token</td>
+<td>Adfind.exe -sc whoami</td>
+</tr>
+<tr>
+<td>查询指定用户的相关信息</td>
+<td>Adfind.exe -sc u:&lt;Name&#x2F;SameAccoutName&gt; 例子：Adfind.exe -sc u:administrator</td>
+</tr>
+<tr>
+<td>查询当前域中用户数量</td>
+<td>Adfind.exe -sc adobjcnt:user</td>
+</tr>
+<tr>
+<td>查询当前域中被禁用的用户</td>
+<td>Adfind.exe -sc users_disabled</td>
+</tr>
+<tr>
+<td>查询域中密码不过期的用户</td>
+<td>Adfind.exe -sc users_noexpire</td>
+</tr>
+<tr>
+<td>查询域中不需要密码的用户</td>
+<td>Adfind.exe -sc users_pwdnotreqd</td>
+</tr>
+<tr>
+<td>查询当前域中所有域控制器(返回FQDN信息)</td>
+<td>Adfind.exe dclist</td>
+</tr>
+<tr>
+<td>查询域中所有只读写的域控制器</td>
+<td>Adfind.exe -sc dclist:rodc</td>
+</tr>
+<tr>
+<td>查询当前域中所有可读写的域控制器</td>
+<td>Adfind.exe -sc dclist:!rodc</td>
+</tr>
+<tr>
+<td>查询所有的组策略对象并显示所有属性</td>
+<td>Adfind.exe -sc gpodmp</td>
+</tr>
+<tr>
+<td>查询域信任关系</td>
+<td>Adfind.exe -f “objectclass&#x3D;trusteddomain”</td>
+</tr>
+<tr>
+<td>查询test.com域中具有高权限的SPN</td>
+<td>Adfind.exe -b “DC&#x3D;test,DC&#x3D;com” -f “&amp;(servicePrincipalName&#x3D;*)(admincount&#x3D;1)” servicePrincipalName</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91/" class="category-chain-item">内网</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/">#内网学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内网渗透基础知识(一)</div>
+      <div>http://example.com/2022/10/18/内网渗透的基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>一位不知名的网安小白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/14/%E6%96%87%E4%BB%B6/" title="Python爬虫-文件">
+                        <span class="hidden-mobile">Python爬虫-文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="#" target="_blank" rel="nofollow noopener"><span>Undefined</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
