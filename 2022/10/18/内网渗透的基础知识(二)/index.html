@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.ico">
+  <link rel="icon" href="/images/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="一位不知名的网安小白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="内网渗透测试基础知识(二)域用户与机器用户介绍域用户121、域用户就是在域环境中的用户，在域控制器被创建，并且其所有信息都保存在活动目录中。2、域用户位于域全局组Domain Users中，而计算机本地用户账户位于本地User组中。当计算机加入域时，全局组Domain Users会被添加到计算机本地User组中。 查看域中所有域用户命令net user &#x2F;domain 机器用户1机器用户其实是一种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透基础知识(二)">
+<meta property="og:url" content="http://example.com/2022/10/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="undefined">
+<meta property="og:description" content="内网渗透测试基础知识(二)域用户与机器用户介绍域用户121、域用户就是在域环境中的用户，在域控制器被创建，并且其所有信息都保存在活动目录中。2、域用户位于域全局组Domain Users中，而计算机本地用户账户位于本地User组中。当计算机加入域时，全局组Domain Users会被添加到计算机本地User组中。 查看域中所有域用户命令net user &#x2F;domain 机器用户1机器用户其实是一种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/bizi/3.jpeg">
+<meta property="article:published_time" content="2022-10-18T09:45:00.000Z">
+<meta property="article:modified_time" content="2022-10-21T04:45:15.080Z">
+<meta property="article:author" content="一位不知名的网安小白">
+<meta property="article:tag" content="内网学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/bizi/3.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>内网渗透基础知识(二) - undefined</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>404</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/0.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内网渗透基础知识(二)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-18 17:45" pubdate>
+          2022年10月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">内网渗透基础知识(二)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="内网渗透测试基础知识-二"><a href="#内网渗透测试基础知识-二" class="headerlink" title="内网渗透测试基础知识(二)"></a>内网渗透测试基础知识(二)</h1><h3 id="域用户与机器用户介绍"><a href="#域用户与机器用户介绍" class="headerlink" title="域用户与机器用户介绍"></a>域用户与机器用户介绍</h3><h4 id="域用户"><a href="#域用户" class="headerlink" title="域用户"></a>域用户</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">1、域用户就是在域环境中的用户，在域控制器被创建，并且其所有信息都保存在活动目录中。<br>2、域用户位于域全局组Domain Users中，而计算机本地用户账户位于本地User组中。当计算机加入域时，全局组Domain Users会被添加到计算机本地User组中。<br></code></pre></td></tr></table></figure>
+<h5 id="查看域中所有域用户命令"><a href="#查看域中所有域用户命令" class="headerlink" title="查看域中所有域用户命令"></a>查看域中所有域用户命令</h5><p><code>net user /domain</code><br><img src="/../images/Intranet_Book/18.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="机器用户"><a href="#机器用户" class="headerlink" title="机器用户"></a>机器用户</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">机器用户其实是一种特殊的域用户。查询活动目录时随便选中Domain Computer组的一台机器账户，查看其objectClass属性，可以发现该对象时computer类的示例，并且computer类时user类的子类<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/19.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>查询域内所有的机器用户</li>
+</ul>
+<p><code>net group &quot;Domain Computers&quot; /domain</code><br><img src="/../images/Intranet_Book/20.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>当获取一台域中主机的控制权后，发现没有域中用户凭据或者在域中没有权限去执行命令，此时可以用一些系统提权的方法，将当前用户提升到SYSTEM，以system权限进行域内操作</li>
+<li>例子：<ul>
+<li>查看本地用户，然后执行域命令，提示拒绝访问<br><img src="/../images/Intranet_Book/21.png" srcset="/img/loading.gif" lazyload></li>
+<li>提权以后尝试执行<br><img src="/../images/Intranet_Book/22.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h3 id="域用户组的分类和权限"><a href="#域用户组的分类和权限" class="headerlink" title="域用户组的分类和权限"></a>域用户组的分类和权限</h3><h4 id="组的用途"><a href="#组的用途" class="headerlink" title="组的用途"></a>组的用途</h4><ul>
+<li>组（Group）就是用户账号的集合，按照用途可以分为通讯组和安全组<ul>
+<li>通讯组就是一个通讯群组。比如把某部门员工都放进去某个通讯组，当给这个通讯组发消息时，组内所有用户都能收到</li>
+<li>安全组就是用户权限的集合。例如 管理员不用去一个用一个用户的下发权限，只需要一个组，对该组有相应的权限，那么组里的用户也就有了</li>
+</ul>
+</li>
+</ul>
+<h4 id="安全组的权限"><a href="#安全组的权限" class="headerlink" title="安全组的权限"></a>安全组的权限</h4><ul>
+<li>根据组的作用范围，安全组可以分为：(注意：这里的作用范围指的是组在域树或域林中的应用的范围)<ul>
+<li>域本地组</li>
+<li>通用组</li>
+<li>全局组</li>
+</ul>
+</li>
+</ul>
+<h5 id="1、域本地组"><a href="#1、域本地组" class="headerlink" title="1、域本地组"></a>1、域本地组</h5><ul>
+<li>域本地组的成员可以来自森林中的任何域，域本地组用来访问同一域中的资源。在本机模式中的域本地组可以包含森林中任意域内的用户账户、全局组和通用组以及同一域内的域本地组。在混合模式域中，它们能包含任意域中的用户账户和全局组。</li>
+<li>查询所有的域本地组<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe -b &quot;dc=god,dc=org&quot; -bit -f &quot;(&amp;(objectClass=group)(grouptype:AND:=4))&quot; cn -dn<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/23.png" srcset="/img/loading.gif" lazyload></li>
+<li>常见的系统内置的域本地组及其权限如下：<ul>
+<li>Administrators：管理员组，该组的成员可以不受限制地访问域中的资源，是域林强大的服务管理组</li>
+<li>Print Operators：打印机操作员组，该组的成员可以管理网络中的打印机，还可以在本地登录和关闭域控制器。</li>
+<li>Backip Operators 备份操作员组：该组的成员可以在域控制器中执行备份和还原操作，还可以在本地登录和关闭域控制器</li>
+<li>Remote Deskop Users：远程登录组，只有该组的成员才能远程登录服务器的权限</li>
+<li>Acccount Operators：账号操作员组，该组的成员可以创建和管理该域中的用户和组，还为其设置权限，也可以在本地登录域控制器</li>
+<li>Server Operators：服务器操作员组，该组的成员可以管理域服务器</li>
+</ul>
+</li>
+</ul>
+<h5 id="2、通用组（Unlversal-Group）"><a href="#2、通用组（Unlversal-Group）" class="headerlink" title="2、通用组（Unlversal Group）"></a>2、通用组（Unlversal Group）</h5><ul>
+<li>通用组成员来自森林中的任何域，通用组用来访问任意域中的资源。</li>
+<li>查询所有通讯组<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe -b dc=god,dc=org -bit -f &quot;(&amp;(objectClass=group)(grouptype:AND:=8))&quot; cn -dn<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/24.png" srcset="/img/loading.gif" lazyload></li>
+<li>两个常见的系统内置的通用组及其权限<ul>
+<li>Enterprise Admins: 组织系统管理员，该组是域林的根域中的一个组。该组中的成员在域林的每个域中都是Administrators组的成员，因此对所有的域控制器都有完全控制控制权。</li>
+<li>Schema Admins:架构管理组，该组是域森林的根域中的一个组。该组中的成员可以修改活动目录，如架构分区中新增类或属性</li>
+</ul>
+</li>
+</ul>
+<h5 id="3、全局组"><a href="#3、全局组" class="headerlink" title="3、全局组"></a>3、全局组</h5><ul>
+<li>全局组可以作用于域林的所有域，是介于域本地组和通用组。全域组只能包含本域的用户。</li>
+<li>查询所有全域组<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe -b &quot;dc=god,dc=org&quot; -bit -f &quot;(&amp;(objectClass=group)(grouptype:AND:=2))&quot; cn -dn<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/25.png" srcset="/img/loading.gif" lazyload></li>
+<li>常见的系统内置的全局组及其权限如下<ul>
+<li>Domain Admins: 域管理员组，该组的成员在所有加入域的服务器上拥有完整的管理员权限。如果希望某用户成为域管理员，就可以加其添加到Domain Admins组中。该组会被添加到本地域的Administros组中，因此获得Administrators组的所有权限。同时，该组默认被添加到每台计算机的本地Administrators组中，所以会获得域中所有计算机的控制权。</li>
+<li>Domain Users: 域用户组，该组的成员是所有的域用户。默认情况下，新建的用户都是该组的成员</li>
+<li>Domain Computers: 域成员主机组，该组的成员是域中所有的域成员主机，任何新建立的计算机账号都是该组的成员。</li>
+<li>Domain Controllers:域控制器组，该组的成员包含域中所有的域控制器</li>
+<li>Domain Guests:域访客用户组，该组的成员默认为域访客用户</li>
+<li>Group Policy Creator Owners:新建组策略对象组，该组的成员可以修改域的组策略</li>
+</ul>
+</li>
+</ul>
+<h3 id="组织单位"><a href="#组织单位" class="headerlink" title="组织单位"></a>组织单位</h3><ul>
+<li>当需要对用户赋予某特殊的权限时，可以设置一个域用户组，对这个组配置资源访问权限，再将该用户拉进这个组，这样用户就拥有了这个组的权限。也可以指定部门来做统一用户管理。</li>
+<li>组织单位（Organization Unit，OU）是一个可以将域中的用户，组和计算机等对象放入其中的容器的对象。<br><img src="/../images/Intranet_Book/26.png" srcset="/img/loading.gif" lazyload></li>
+<li>所有组织单位在活动目录中都是organizationalUnit类的示例<br><img src="/../images/Intranet_Book/27.png" srcset="/img/loading.gif" lazyload></li>
+<li>可以通过<code>(objectClass=organizationalUnit)</code>或者<code>(objectCategory=organizationalUnit)</code>来查询所有的OU：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Adfind.exe -b &quot;dc=god,dc=org&quot; -f &quot;(objectClass=organizationalUnit)&quot; -dn<br></code></pre></td></tr></table></figure>
+<img src="/../images/Intranet_Book/28.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><ul>
+<li>访问控制是指Windows操作系统使用内置授权和访问控制结束，确定经过身份验证的用户是否具有访问资源的正确权限，控制主体操作（读取、写入、删除、更改等）对象（Object）的行为是否具有合法权限</li>
+</ul>
+<h4 id="Windows访问控制模型"><a href="#Windows访问控制模型" class="headerlink" title="Windows访问控制模型"></a>Windows访问控制模型</h4><ul>
+<li>Windows访问控制模型（Access Control Model）是Windows系统安全性的基础构件。</li>
+<li>访问控制模型主要由访问令牌（Access Token）和安全描述符（Security Descriptor）两部分组成，分别由访问着和被访问者持有。</li>
+</ul>
+<h5 id="访问令牌"><a href="#访问令牌" class="headerlink" title="访问令牌"></a>访问令牌</h5><ul>
+<li>访问令牌主要包含以下信息：<ul>
+<li>标识用户账户的SID（Security ID，安全标识）。</li>
+<li>标识以后所属的组的SID</li>
+<li>标识当前登录会话的登录SID</li>
+<li>用户或者用户所属的用户组持有特权列表</li>
+<li>标识对象所有者的SID</li>
+<li>标识对象所有者组的SID</li>
+<li>标识用户主安全组的SID</li>
+<li>用户创建安全对象而不指定安全描述符时系统使用的默认DACL（Discretionary Access Control List，自主访问控制列表）</li>
+<li>访问令牌的来源。</li>
+<li>访问令牌的类型，即令牌是主令牌还是模拟令牌。</li>
+<li>限制SID的可选列表</li>
+<li>当前模拟等级</li>
+<li>其他信息</li>
+</ul>
+</li>
+</ul>
+<h5 id="安全描述符"><a href="#安全描述符" class="headerlink" title="安全描述符"></a>安全描述符</h5><ul>
+<li>安全描述符（Security Descriptor）是一种每个安全对象相关联的数据结构，其中包含域安全对象相关联的安全信息</li>
+<li>安全描述符主要由SID和ACL（Access Control List，访问控制列表）组成。</li>
+<li>SID用来标识用户账户和该用户所属的组。ACL分为DACL和SACL两种</li>
+</ul>
+<h4 id="访问控制列表"><a href="#访问控制列表" class="headerlink" title="访问控制列表"></a>访问控制列表</h4><ul>
+<li>访问控制列表（ACL）是访问控制项（Access Control Entry ，ACE）的列表。</li>
+</ul>
+<h5 id="DACL"><a href="#DACL" class="headerlink" title="DACL"></a>DACL</h5><ul>
+<li>DACL（自主访问控制列表）是安全对象的访问控制策略，其中定义了该安全对象的访问控制策略，用于指定允许或者拒绝特定安全主体对该安全对象的访问。DACL是由一条条的访问控制项（ACE）条目构成的</li>
+</ul>
+<h5 id="SACL"><a href="#SACL" class="headerlink" title="SACL"></a>SACL</h5><ul>
+<li>SACL（System Access Control List，访问控制列表）是安全主体对安全对象的访问行为的审计策略。SACL也是由一条一条的ACE条构成，</li>
+</ul>
+<h5 id="查看与修改访问控制列表"><a href="#查看与修改访问控制列表" class="headerlink" title="查看与修改访问控制列表"></a>查看与修改访问控制列表</h5><ul>
+<li><p>Icacls是一种命令行工具，使用icacls命令可以查看或修改指定文件上的访问控制列表（ACL），并将存储的DACL应用于指定目录中的文件</p>
+</li>
+<li><p>查看指定文件的ACL</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">icacls C:\users\Administrator\Desktop\sec<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/29.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>icacls可以查询到的各种权限说明如下：</p>
+<ul>
+<li>简单权限序列<ul>
+<li>N，无访问权限</li>
+<li>F，完全访问权限</li>
+<li>M，修改权限</li>
+<li>RX，读取和执行权限</li>
+<li>R，只读权限</li>
+<li>W，只写权限</li>
+<li>D，删除权限</li>
+</ul>
+</li>
+<li>在”()”中以”,”分隔的特定权限列表<ul>
+<li>DE，删除</li>
+<li>RC，读取控制</li>
+<li>WDAC，写入DAC，WO，写入所有者</li>
+<li>S，同步</li>
+<li>AS，访问系统安全性</li>
+<li>MA，允许的最大值</li>
+<li>GR，一般性读取</li>
+<li>GW，一般性写入</li>
+<li>GE，一般性执行</li>
+<li>GA，全为一般性</li>
+<li>RD，读取数据&#x2F;列出目录</li>
+<li>WD，写入数据&#x2F;添加文件</li>
+<li>AD，附件数据&#x2F;添加子目录</li>
+<li>REA，读取 展属性</li>
+<li>WEA，写入扩展属性</li>
+<li>X，执行&#x2F;遍历</li>
+<li>DC，删除子项</li>
+<li>RA，读取属性</li>
+<li>WA，写入属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>继承权限可以优先于每种格式，单只应用于目录：</p>
+<ul>
+<li>OI，对象继承</li>
+<li>CI，容器继承</li>
+<li>IO，仅继承</li>
+<li>NP，不传播继承</li>
+<li>I，从父容器继承的权限</li>
+</ul>
+</li>
+<li><p>将指定目录及子目录下所有文件的ACL备份到file.txt</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">icacls C:\Users\Administrator\Desktop\* /save file.txt /T<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/30.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将file.txt 内所有被分的文件ACL还原到指定目录及其子目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">icacls C:\Users\Administrator\Desktop /restore file.txt<br></code></pre></td></tr></table></figure>
+<p><img src="/../images/Intranet_Book/31.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h3 id="组策略"><a href="#组策略" class="headerlink" title="组策略"></a>组策略</h3><ul>
+<li>组策略（Group Policy）是Windows环境下管理用户的一种手段，可以控制用户账户和计算机账户的工作环境</li>
+<li>组策略提供了操作系统、应用程序和活动目录中用户设置的集中化管理和配置</li>
+<li>主要包含但不限于以下功能：<ul>
+<li>账户策略的配置<ul>
+<li>如设置用户账户的密码长度，复杂程度，密码使用期限，账户锁定策略等</li>
+</ul>
+</li>
+<li>脚本的配置：<ul>
+<li>如登录与注销，启动与关机脚本的设置</li>
+</ul>
+</li>
+<li>应用程序的安装与删除：<ul>
+<li>用户登录或计算机启动时，自动为用户安装应用，自动修复应用的错误或自动删除应用</li>
+</ul>
+</li>
+<li>文件夹重定向：<ul>
+<li>如改变文件、“开始”菜单等文件夹的存储位置</li>
+</ul>
+</li>
+<li>限制访问可移动存储设备</li>
+<li>用户工作环境的配置</li>
+<li>其他系统配置</li>
+</ul>
+</li>
+</ul>
+<h4 id="组策略对象"><a href="#组策略对象" class="headerlink" title="组策略对象"></a>组策略对象</h4><ul>
+<li>组策略对象（Group Policy Object，GPO）即组策略设置的集合，其中包含应用于特定用户或计算机的策略信息和具体配置</li>
+<li>可以使用组策略管理来查看和编辑每个GPO的设。</li>
+<li>两个默认组策略Default Domain Policy和Default DOmain Controller Policy，它们在域控制器被建立时自动创建<br><img src="/../images/Intranet_Book/32.png" srcset="/img/loading.gif" lazyload><ul>
+<li>Default Domain Policy默认组策略对象<ul>
+<li>Default Domain Policy应用到其所在域的所有用户和计算机，右侧作用域中的这条组策略连接到整个god.org域<br><img src="/../images/Intranet_Book/33.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>Default DOmain Controller Policy 默认组策略对象<ul>
+<li>Default DOmain Controller Policy 应用到Domain Controllers 中所有的用户和计算机<br><img src="/../images/Intranet_Book/34.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="组策略的创建"><a href="#组策略的创建" class="headerlink" title="组策略的创建"></a>组策略的创建</h4><ul>
+<li>打开组策略管理-右键”组策略对象“-新建<br><img src="/../images/Intranet_Book/35.png" srcset="/img/loading.gif" lazyload></li>
+<li>输入新建的组策略名称<br><img src="/../images/Intranet_Book/36.png" srcset="/img/loading.gif" lazyload></li>
+<li>选择一个组织单位，右键链接现有<br><img src="/../images/Intranet_Book/37.png" srcset="/img/loading.gif" lazyload></li>
+<li>选择刚才新建的组策略对象<br><img src="/../images/Intranet_Book/38.png" srcset="/img/loading.gif" lazyload></li>
+<li>选择组策略对象右键编辑<br><img src="/../images/Intranet_Book/39.png" srcset="/img/loading.gif" lazyload></li>
+<li>配置一个组策略<br><img src="/../images/Intranet_Book/39.1.png" srcset="/img/loading.gif" lazyload></li>
+<li>新配置的组策略，需要更新一下，否则不失效<br><img src="/../images/Intranet_Book/39.2.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="内网域环境搭建"><a href="#内网域环境搭建" class="headerlink" title="内网域环境搭建"></a>内网域环境搭建</h3><h4 id="单域环境搭建"><a href="#单域环境搭建" class="headerlink" title="单域环境搭建"></a>单域环境搭建</h4><ul>
+<li>详情如下<br><a target="_blank" rel="noopener" href="http://www.phpinfo.top/2022/10/09/%E5%9F%9F%E6%8E%A7%E6%90%AD%E5%BB%BA/">域环境搭建</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91/" class="category-chain-item">内网</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/">#内网学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内网渗透基础知识(二)</div>
+      <div>http://example.com/2022/10/18/内网渗透的基础知识(二)/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>一位不知名的网安小白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="内网渗透基础知识(一)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">内网渗透基础知识(一)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/14/%E6%96%87%E4%BB%B6/" title="Python爬虫-文件">
+                        <span class="hidden-mobile">Python爬虫-文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="#" target="_blank" rel="nofollow noopener"><span>Undefined</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
