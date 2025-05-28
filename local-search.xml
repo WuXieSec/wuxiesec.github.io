@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>其他-正则表达式</title>
+    <link href="/2025/05/28/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <url>/2025/05/28/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h4 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h4><ul><li>“?” 代表前面字符出现0次或者1次 （可有可无）</li></ul><p><img src="/../images/zhengze/1.png"></p><ul><li>“*”   可以匹配0个或者多个字符</li></ul><p><img src="/../images/zhengze/2.png"></p><ul><li>“+”   匹配多出现一次以上的字符</li></ul><p><img src="/../images/zhengze/3.png"></p><ul><li><p>“{…..}” 匹配更精确的出现次数</p><ul><li>出现6次</li></ul><p><img src="/../images/zhengze/4.png"></p><ul><li>出现2到6次</li></ul><p><img src="/../images/zhengze/5.png"></p><ul><li>出现2次以上</li></ul><p><img src="/../images/zhengze/6.png"></p></li><li><p>“()”想要匹配多次，用括号</p></li></ul><p><img src="/../images/zhengze/7.png"></p><h4 id="或运算符"><a href="#或运算符" class="headerlink" title="或运算符"></a>或运算符</h4><ul><li>“(xx|xxx)” 匹配括号里的内容要么是xx要么是xxx</li></ul><p><img src="/../images/zhengze/8.png"></p><ul><li><p>[xxx]+ 字符类 </p><ul><li>[a-z]+ 所有英文小写的字符</li></ul><p><img src="/../images/zhengze/10.png"></p><ul><li>[A-Z]+ 所有英文大写的字符</li></ul><p><img src="/../images/zhengze/11.png"></p><ul><li>[0-9]+ 所有数字</li></ul><p><img src="/../images/zhengze/9.png"></p><ul><li>[a-zA-Z0-9]+ 所以英文字符和数字</li></ul><p><img src="/../images/zhengze/12.png"></p></li><li><p>“^” 以外的字符 比如”[^\0-9]”+</p></li></ul><p><img src="/../images/zhengze/13.png"></p><h4 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h4><ul><li>\d+ 代表数字字符 等于[0-9]+</li></ul><p><img src="/../images/zhengze/14.png"></p><ul><li>\D+ 和\d相对应代表非数字字符</li></ul><p><img src="/../images/zhengze/15.png"></p><ul><li>\w+ 代表单词字符(英文、数字及上下划线)</li></ul><p><img src="/../images/zhengze/16.png"></p><ul><li>\W+ 非单词字符</li></ul><p><img src="/../images/zhengze/17.png"></p><ul><li>\s+ 代表空白符 (包含Tab和换行符)</li></ul><p><img src="/../images/zhengze/18.png"></p><ul><li>\S+ 代表非空白字符</li></ul><p><img src="/../images/zhengze/19.png"></p><ul><li>.* 代表任意字符 但是不包括换行符</li></ul><p><img src="/../images/zhengze/20.png"></p><ul><li>^a 代表匹配行首的a</li></ul><p><img src="/../images/zhengze/21.png"></p><ul><li>a$ 代表匹配行尾</li></ul><p><img src="/../images/zhengze/22.png"></p><h4 id="贪婪与懒惰匹配"><a href="#贪婪与懒惰匹配" class="headerlink" title="贪婪与懒惰匹配"></a>贪婪与懒惰匹配</h4><ul><li>&lt;.+?&gt;</li></ul><p><img src="/../images/zhengze/23.png"></p><p><img src="/../images/zhengze/24.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>正则表达式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>其他</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python爬虫-urllib</title>
     <link href="/2022/10/23/urllib/"/>
     <url>/2022/10/23/urllib/</url>
