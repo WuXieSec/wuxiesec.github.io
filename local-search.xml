@@ -4,7 +4,57 @@
   
   
   <entry>
-    <title>滴水逆向-进制</title>
+    <title>滴水逆向-3、通用寄存器、内存读写</title>
+    <link href="/2025/06/19/%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E3%80%81%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/"/>
+    <url>/2025/06/19/%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E3%80%81%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99/</url>
+    
+    <content type="html"><![CDATA[<h5 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h5><p><img src="/../images/dishui/image%209.png"><br><img src="/../images/dishui/image%2014.png"></p><ul><li>第一步 eax 32位寄存器<br><img src="/../images/dishui/image%2010.png"></li><li>第二步 十六位寄存器ax 在eax里面<br><img src="/../images/dishui/image%2011.png"></li><li>第三步ah 在ax里面的高位<br><img src="/../images/dishui/image%2012.png"></li><li>第四步 al在ax里面的低位<br><img src="/../images/dishui/image%2013.png"></li></ul><h5 id="mov"><a href="#mov" class="headerlink" title="mov"></a>mov</h5><ul><li>MOV 目标操作数，源操作数<br><img src="/../images/dishui/image%2015.png"><br><img src="/../images/dishui/image%2016.png"></li></ul><h5 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h5><p><img src="/../images/dishui/image%2018.png"><img src="/../images/dishui/image%2019.png"><img src="/../images/dishui/image%2020.png"><br><img src="/../images/dishui/image%2021.png"></p><h5 id="常用的计量单位"><a href="#常用的计量单位" class="headerlink" title="常用的计量单位"></a>常用的计量单位</h5><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gcode">BYTE  字节 = <span class="hljs-number">8</span> <span class="hljs-comment">(BIT)</span> <span class="hljs-attr"># 能存储8</span>个<span class="hljs-number">0</span>和<span class="hljs-number">1</span><br>WORD   字  = <span class="hljs-number">16</span>（BIT）<br>DWORD  双字  = <span class="hljs-number">32</span> <span class="hljs-comment">(BIT)</span><br><span class="hljs-comment">// 日常生活中</span><br><span class="hljs-number">1</span>KB = <span class="hljs-number">1024</span>BYTE<br><span class="hljs-number">1</span>MB = <span class="hljs-number">1024</span>KB<br><span class="hljs-number">1</span>GB = <span class="hljs-number">1024</span>MB<br></code></pre></td></tr></table></figure><h5 id="1、内存格式"><a href="#1、内存格式" class="headerlink" title="1、内存格式"></a>1、内存格式</h5><p><img src="/../images/dishui/image%2023.png"></p><ul><li>每个内存单元的宽度为8</li><li>[编号]称为地址</li><li>地址的作用：当我们想要从内存中读取数据或者想像内存中写入</li></ul><h5 id="2、从指定内存中写入-x2F-读取数据"><a href="#2、从指定内存中写入-x2F-读取数据" class="headerlink" title="2、从指定内存中写入&#x2F;读取数据"></a>2、从指定内存中写入&#x2F;读取数据</h5><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-keyword">mov</span> <span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> <span class="hljs-built_in">ds</span>:[<span class="hljs-number">0x0012FF34</span>],<span class="hljs-number">0x12345678</span><br><span class="hljs-keyword">mov</span> <span class="hljs-built_in">eax</span>,<span class="hljs-built_in">dword</span> <span class="hljs-built_in">ptr</span> <span class="hljs-built_in">ds</span>:[<span class="hljs-number">0x0012FF34</span>]<br><span class="hljs-symbol">dword:</span> 要读/写多少 此时是<span class="hljs-number">4</span>字节 <span class="hljs-built_in">byte</span>== <span class="hljs-number">1</span>字节 <span class="hljs-built_in">word</span>==<span class="hljs-number">2</span>字节<br><span class="hljs-built_in">ptr</span>：Point 代表后面是一个指针（指针的意思就是里面存的不是普通的值，而是个地址）<br><span class="hljs-symbol">ds:</span> 段寄存器 <br><span class="hljs-number">0x0012FF34</span>：内存编号，必须是<span class="hljs-number">32</span>位的 前面<span class="hljs-number">0</span>可以省略<br>注意：地址编号不要随便写，因为内存是有保护的，并不是所有的内存都可以直接读写（需要特别处理），建议地址编号写成<span class="hljs-built_in">esp</span>的值<br></code></pre></td></tr></table></figure><p><img src="/../images/dishui/image%2026.png"></p><ul><li>0060FA24内存地址 后面12345678是值</li><li>读内存</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>逆向</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>滴水逆向</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>滴水逆向-2、数据宽度_逻辑运算</title>
+    <link href="/2025/06/19/%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6_%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/"/>
+    <url>/2025/06/19/%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6_%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一-、按照圆圈理解"><a href="#一-、按照圆圈理解" class="headerlink" title="一 、按照圆圈理解"></a>一 、按照圆圈理解</h4><p>有符号数与无符号数是人类自由定义的，计算机只认得0和1<br>而且这里可以按照平时讲的补码验证一下，0-7是正数，8-F是负数，8到F的十六进制都是1开头（1000，1001，1010….1111）对应着平时说的1开头即是负数<br><img src="/../images/dishui/file-20250212140932014.png"><br><img src="/../images/dishui/file-20250212140959223.png"><br><img src="/../images/dishui/file-20250212142036097.png"><br><img src="/../images/dishui/file-20250212142051029.png"></p><h5 id="二、二进制的逻辑运算"><a href="#二、二进制的逻辑运算" class="headerlink" title="二、二进制的逻辑运算"></a>二、二进制的逻辑运算</h5><ul><li>1、逻辑运算：或(or |) 只要有一个为1就是1<br><img src="/../images/dishui/image.png"></li><li>2、逻辑运算：与(and &amp;) 两个都为1才是1<br><img src="/../images/dishui/image%201.png"></li><li>3、逻辑运算：异或(xor ^)不一样为1<br><img src="/../images/dishui/image%202.png"></li><li>4、逻辑运算：非(not !)1是0 0是1<br><img src="/../images/dishui/image%203.png"></li><li>2+3在cpu中如何运算<br><img src="/../images/dishui/image%204.png"></li><li>如果想获取某个值的第N位的值是多少？<br><img src="/../images/dishui/image%205.png"><br><img src="/../images/dishui/image%206.png"></li></ul><h5 id="三、寄存器"><a href="#三、寄存器" class="headerlink" title="三、寄存器"></a>三、寄存器</h5><p><img src="/../images/dishui/image%208.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>逆向</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>滴水逆向</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>滴水逆向-1、进制</title>
     <link href="/2025/06/18/%E8%BF%9B%E5%88%B6/"/>
     <url>/2025/06/18/%E8%BF%9B%E5%88%B6/</url>
     
